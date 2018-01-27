@@ -6,9 +6,14 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 10;
     public int playerIndex;
-    public static int playerNumber;
+	public PickupType currentPickup;
+
+	public GameObject daggerPickupMode;
+	//public GameObject jumpPickupMode;
+
 	Camera cam;
 	Rigidbody rb;
+
 
 	void Awake()
 	{
@@ -18,9 +23,26 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-        //Vector3 vel = new Vector3(Manager.Instance.PlayerInput.x,0,Manager.Instance.PlayerInput.y) * speed;
-        //rb.AddTorque(vel);
         Vector3 vel =  Manager.Instance.PlayerInput.GetPlayerInput(playerIndex) * speed;
         rb.AddForce(vel);	
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		var pickup = other.GetComponent<Pickup>();
+
+		if (pickup != null)
+		{
+			print(pickup.pickupType);
+			currentPickup = pickup.pickupType;
+
+			if (currentPickup == PickupType.Dagger)
+			{
+				daggerPickupMode.SetActive(true);
+				Destroy(pickup.gameObject);
+			}
+
+		}
+	}
+
 }

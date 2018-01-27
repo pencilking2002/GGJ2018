@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordPickup : Pickup {
+public enum PickupType {
+	Dagger,
+	JumpPad
+}
+
+public class Pickup : MonoBehaviour {
 	public PickupType pickupType;
-
-	void Awake() 
-	{
-		
-	}	
-
 }
