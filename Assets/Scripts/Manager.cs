@@ -6,7 +6,8 @@ public class Manager : MonoBehaviour {
 
     public static Manager Instance;
     public GameManager Game;
-    public InputManager PlayerInput;
+    public PlayerInput PlayerInput;
+
 
     void Awake()
     {
@@ -14,7 +15,7 @@ public class Manager : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             Game = GetComponentInChildren<GameManager>();
-			PlayerInput = GetComponentInChildren<InputManager>();
+            PlayerInput = GetComponentInChildren<PlayerInput>();
         }
     }
 
