@@ -52,8 +52,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4592412432558094}
-  - component: {fileID: 54458567930691966}
   - component: {fileID: 114591886898563048}
+  - component: {fileID: 54458567930691966}
   - component: {fileID: 65449643184789362}
   - component: {fileID: 65830200294543252}
   m_Layer: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   speed: 50
   playerIndex: 0
   currentPickup: 0
+  attackLength: 0.5
   daggerPickupMode: {fileID: 1068817847773900}
 --- !u!136 &136990765236513698
 CapsuleCollider:
