@@ -52,18 +52,23 @@ public class PlayerController : MonoBehaviour {
 //		print("index: " + index);
 //		print("player index: " + playerIndex);
 
+
 		if (index == playerIndex)
 		{
 			if (currentPickup == PickupType.Dagger && !LeanTween.isTweening(swordAttackTweenID))
 			{
 				//print ("Attack");
+
 				swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, new Vector3(0,0, attackLength), 0.1f)
 				.setOnComplete(() => {
 					swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
 				}).id;
 
 				swordAttacking = true;
+
 				attackSphere.gameObject.SetActive(true);
+
+				Manager.Instance.audioManager.Play(AudioType.DaggerSwish);
 
 				LeanTween.delayedCall(0.1f, () => {
 					swordAttacking = false;

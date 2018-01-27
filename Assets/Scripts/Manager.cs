@@ -7,6 +7,7 @@ public class Manager : MonoBehaviour {
     public static Manager Instance;
     public GameManager Game;
     public PlayerInput PlayerInput;
+    public AudioManager audioManager;
 
 
     void Awake()
@@ -16,6 +17,7 @@ public class Manager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             Game = GetComponentInChildren<GameManager>();
             PlayerInput = GetComponentInChildren<PlayerInput>();
+            audioManager = GetComponentInChildren<AudioManager>();
         }
     }
 
