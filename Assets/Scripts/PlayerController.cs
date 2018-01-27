@@ -12,17 +12,23 @@ public class PlayerController : MonoBehaviour {
     public float rotSpeed = 20;
 	public int playerIndex;
 	public PickupType currentPickup;
+	[HideInInspector]
+	public Rigidbody rb;
 
 	[Header("Sword Settings")]
 	[Space(5)]
 	public float attackLength = 1;
 	public GameObject daggerPickupMode;
+	public float swordAttackForce = 30;
+
+	public SphereCollider attackSphere;
+
 	//public GameObject jumpPickupMode;
 
 	Camera cam;
-	Rigidbody rb;
 	int swordAttackTweenID = -9999;
 
+	bool swordAttacking;
 
 	void Awake()
 	{
@@ -43,18 +49,26 @@ public class PlayerController : MonoBehaviour {
 
 	void SwordAttack(int index)
 	{
-		print("index: " + index);
-		print("player index: " + playerIndex);
+//		print("index: " + index);
+//		print("player index: " + playerIndex);
 
 		if (index == playerIndex)
 		{
 			if (currentPickup == PickupType.Dagger && !LeanTween.isTweening(swordAttackTweenID))
 			{
-				print ("Attack");
+				//print ("Attack");
 				swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, new Vector3(0,0, attackLength), 0.1f)
 				.setOnComplete(() => {
 					swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
 				}).id;
+
+				swordAttacking = true;
+				attackSphere.gameObject.SetActive(true);
+
+				LeanTween.delayedCall(0.1f, () => {
+					swordAttacking = false;
+					attackSphere.gameObject.SetActive(false);
+				});
 			}
 		}
 	}
@@ -75,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (pickup != null)
 		{
-			print(pickup.pickupType);
+			//print(pickup.pickupType);
 			currentPickup = pickup.pickupType;
 
 			if (currentPickup == PickupType.Dagger)
@@ -85,6 +99,11 @@ public class PlayerController : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public bool IsSwordAttacking()
+	{
+		return swordAttacking;
 	}
 
 	void OnEnable()
