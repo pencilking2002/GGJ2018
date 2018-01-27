@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 10;
     public int playerIndex;
-
+    public static int playerNumber;
 	Camera cam;
 	Rigidbody rb;
 

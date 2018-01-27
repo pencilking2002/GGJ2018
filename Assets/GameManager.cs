@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour {
 
+    public static Action onSetPlayers;
     public GameObject[] players;
 
     public void Awake()
@@ -24,5 +26,11 @@ public class GameManager : MonoBehaviour {
         {
             players[i].GetComponent<PlayerController>().playerIndex = i;
         }
+
+        if(onSetPlayers != null)
+        {
+            onSetPlayers(); 
+        }
+
     }
 }
