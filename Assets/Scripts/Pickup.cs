@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum PickupType {
 	Dagger,
-	JumpPad
+	JumpPad,
+	None
 }
 
 public class Pickup : MonoBehaviour {
