@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 041dc1898fea246b6b4f58819aee2961
+  - enabled: 1
+    path: Assets/Scenes/Main-Mike.unity
+    guid: 48a68f4ec251846469b9e06dfccf0a63
