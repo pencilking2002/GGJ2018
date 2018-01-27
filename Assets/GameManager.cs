@@ -25,12 +25,13 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < players.Length; i++)
         {
             players[i].GetComponent<PlayerController>().playerIndex = i;
+            if (onSetPlayers != null)
+            {
+                onSetPlayers();
+            }
         }
 
-        if(onSetPlayers != null)
-        {
-            onSetPlayers(); 
-        }
+      
 
     }
 }
