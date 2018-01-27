@@ -202,6 +202,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114591886898563048, guid: a64e8798c8f44445f8cd1b40ae7d1f3c,
+        type: 2}
+      propertyPath: currentPickup
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a64e8798c8f44445f8cd1b40ae7d1f3c, type: 2}
   m_IsPrefabParent: 0

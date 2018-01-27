@@ -44,5 +44,7 @@ public class AudioManager : MonoBehaviour {
 		audioSource.playOnAwake = false;
 		audioSource.PlayOneShot(audioDict[audioType]);
 
+		Destroy(go, 3.0f);
+
 	}
 }
