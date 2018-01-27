@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour {
 	{
         if (InputManager.Devices.Count != 0)
         {
-            print("Devices " + InputManager.Devices.Count);
+            //print("Devices " + InputManager.Devices.Count);
             for (int i = 0; i < InputManager.Devices.Count; i++)
             {
                 inputs[i].device = InputManager.Devices[i];
@@ -37,6 +37,8 @@ public class PlayerInput : MonoBehaviour {
             }
           
         }
+        // This logic is for if there are no controllers hooked up
+        // Player can only use the keyboard
         else
         {
 
