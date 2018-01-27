@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  rotSpeed: 20
   playerIndex: 0
   currentPickup: 0
   attackLength: 0.5

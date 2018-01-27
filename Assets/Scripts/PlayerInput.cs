@@ -10,10 +10,10 @@ public class PlayerInput : MonoBehaviour {
     List<InputInfo> inputs = new List<InputInfo>();
     public static Action<int> onSwordAttack;
     public static Action<int,int> onRotateAction;
-    int playerInd;
+    public GameObject player;
 
 
-	void Update()
+    void Update()
 	{
         if (InputManager.Devices.Count != 0)
         {
