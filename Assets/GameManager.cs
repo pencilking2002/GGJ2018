@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour {
 
     public static Action onSetPlayers;
     public GameObject[] players;
+    public int numberOfPlayers = 0;
     public GameObject player;
+    public bool gameCanEnd;
 
     public void Awake()
     {
@@ -18,14 +20,17 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Main");
+        gameCanEnd = false;
+        SceneManager.LoadScene("Main-Mike");
     }
 
     public void SetPlayers()
     {
+        
         foreach(InputDevice device in InputManager.Devices)
         {
             Instantiate(player, new Vector3(0f, 10.0f, 0f), Quaternion.identity);
+            numberOfPlayers++;
         }
 
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -36,6 +41,16 @@ public class GameManager : MonoBehaviour {
             {
                 onSetPlayers();
             }
+        }
+
+        gameCanEnd = true;
+    }
+
+    public void Update()
+    {
+        if(numberOfPlayers < 0 && gameCanEnd)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

@@ -8,5 +8,4 @@ public class InputInfo {
     public InputDevice device;
     public int index;
     public float x, y;
-	
 }
