@@ -21,9 +21,6 @@ public class PlayerInput : MonoBehaviour {
 	        var player1 = InputManager.Devices[0];
 	        var player2 = InputManager.Devices[1];
 
-
-	        //      x = Input.GetAxis("Horizontal");
-	        //y = Input.GetAxis("Vertical");
 	        x = player1.LeftStick.Value.x;
 	        y = player1.LeftStick.Value.y;
 
