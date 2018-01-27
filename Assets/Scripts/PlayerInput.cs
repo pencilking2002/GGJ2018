@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	public float x, y, x2, y2;
     List<InputInfo> inputs = new List<InputInfo>();
     public static Action<int> onSwordAttack;
+    public static Action<int,int> onRotateAction;
     int playerInd;
 
 
@@ -16,7 +17,6 @@ public class PlayerInput : MonoBehaviour {
 	{
         if (InputManager.Devices.Count != 0)
         {
-            print("Devices " + InputManager.Devices.Count);
             for (int i = 0; i < InputManager.Devices.Count; i++)
             {
                 inputs[i].device = InputManager.Devices[i];
@@ -25,17 +25,24 @@ public class PlayerInput : MonoBehaviour {
                 inputs[i].x = inputs[i].device.LeftStick.Value.x;
                 inputs[i].y = inputs[i].device.LeftStick.Value.y;
 
+                if(inputs[i].device.RightTrigger.IsPressed || inputs[i].device.LeftTrigger.IsPressed )
+                {
+                    int direction = inputs[i].device.RightTrigger.IsPressed ? 1 : -1;
+                    
+                   if(onRotateAction != null)
+                    {
+                        onRotateAction(i, direction);
+                    }
+                }
 
-                if (inputs[i].device.Action2.WasPressed || Input.GetKeyDown(KeyCode.F))
+                if (inputs[i].device.Action2.WasPressed)
                 {
                     if (onSwordAttack != null)
                     {
                         onSwordAttack(i);
                     }
                 }
-
-            }
-          
+            } 
         }
         else
         {
@@ -74,7 +81,6 @@ public class PlayerInput : MonoBehaviour {
     void AssignPlayers()
     {
         inputs.Add(new InputInfo());
-        print("Assigned PLayers");
     }
 
 }

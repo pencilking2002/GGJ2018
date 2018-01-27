@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    void PlayerInput_OnRotateAction(int obj)
+    {
 
-	public float speed = 10;
+    }
+
+    public float speed = 10;
+    public float rotSpeed = 20;
 	public int playerIndex;
 	public PickupType currentPickup;
 
@@ -27,17 +32,14 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-//		if (Input.GetKeyDown(KeyCode.F))
-//		{
-//			SwordAttack();
-//		}
+
 	}
 
 	void FixedUpdate()
 	{
         Vector3 vel =  Manager.Instance.PlayerInput.GetPlayerInput(playerIndex) * speed;
-        rb.AddForce(vel);	
-	}
+        rb.AddForce(vel);   
+    }
 
 	void SwordAttack(int index)
 	{
@@ -56,6 +58,16 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+    void RotateCharacter(int index, int direction)
+    {
+        print("In Rotate with player " + index);
+        if(index == playerIndex)
+        {
+            rb.MoveRotation(Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 5.0f * direction, transform.eulerAngles.z)));
+        }
+    }
+
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -78,11 +90,13 @@ public class PlayerController : MonoBehaviour {
 	void OnEnable()
 	{
 		PlayerInput.onSwordAttack += SwordAttack;
+        PlayerInput.onRotateAction += RotateCharacter;
 	}
 
 	void OnDisable()
 	{
 		PlayerInput.onSwordAttack -= SwordAttack;
+        PlayerInput.onRotateAction -= RotateCharacter;
 	}
 
 }
