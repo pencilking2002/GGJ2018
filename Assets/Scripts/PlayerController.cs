@@ -27,10 +27,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			SwordAttack();
-		}
+//		if (Input.GetKeyDown(KeyCode.F))
+//		{
+//			SwordAttack();
+//		}
 	}
 
 	void FixedUpdate()
@@ -39,15 +39,21 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(vel);	
 	}
 
-	void SwordAttack()
+	void SwordAttack(int index)
 	{
-		if (currentPickup == PickupType.Dagger && !LeanTween.isTweening(swordAttackTweenID))
+		print("index: " + index);
+		print("player index: " + playerIndex);
+
+		if (index == playerIndex)
 		{
-			print ("Attack");
-			swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, new Vector3(0,0, attackLength), 0.1f)
-			.setOnComplete(() => {
-				swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
-			}).id;
+			if (currentPickup == PickupType.Dagger && !LeanTween.isTweening(swordAttackTweenID))
+			{
+				print ("Attack");
+				swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, new Vector3(0,0, attackLength), 0.1f)
+				.setOnComplete(() => {
+					swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
+				}).id;
+			}
 		}
 	}
 
@@ -67,6 +73,16 @@ public class PlayerController : MonoBehaviour {
 			}
 
 		}
+	}
+
+	void OnEnable()
+	{
+		PlayerInput.onSwordAttack += SwordAttack;
+	}
+
+	void OnDisable()
+	{
+		PlayerInput.onSwordAttack -= SwordAttack;
 	}
 
 }
