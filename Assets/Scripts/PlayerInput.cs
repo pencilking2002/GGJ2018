@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviour {
                     }
                 }
 
-                if (inputs[i].device.Action2.WasPressed)
+                if (inputs[i].device.Action1.WasPressed)
                 {
                     if (onSwordAttack != null)
                     {
@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour {
                     }
                 }
 
-                else if(inputs[i].device.Action4.WasPressed)
+                else if(inputs[i].device.Action3.WasPressed)
                 {
                     if(onDashMove != null)
                     {
