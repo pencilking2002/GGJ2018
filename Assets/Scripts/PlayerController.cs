@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 10;
-    public float rotSpeed = 20;
+    public float dashSpeed = 10;
 	public int playerIndex;
+    public GameObject stretchObj;
 	public PickupType currentPickup;
 	[HideInInspector]
 	public Rigidbody rb;
@@ -60,6 +61,13 @@ public class PlayerController : MonoBehaviour {
 					swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
 				}).id;
 
+                var scale = stretchObj.transform.localScale;
+
+                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * 10, scale.z), 0.1f).setOnComplete(() =>
+                {
+                    LeanTween.scale(stretchObj, scale, 0.1f);
+                });
+
 				swordAttacking = true;
 
 				attackSphere.gameObject.SetActive(true);
@@ -73,6 +81,15 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+    void DashMove(int index)
+    {
+        if(index == playerIndex)
+        {
+            rb.AddForce(new Vector3(rb.velocity.x * dashSpeed, 5.0f, rb.velocity.z * dashSpeed), ForceMode.Impulse);
+
+        }
+    }
 
     void RotateCharacter(int index, int direction)
     {
@@ -110,13 +127,16 @@ public class PlayerController : MonoBehaviour {
 	void OnEnable()
 	{
 		PlayerInput.onSwordAttack += SwordAttack;
+        PlayerInput.onDashMove += DashMove;
         PlayerInput.onRotateAction += RotateCharacter;
 	}
 
 	void OnDisable()
 	{
 		PlayerInput.onSwordAttack -= SwordAttack;
+        PlayerInput.onDashMove -= DashMove;
         PlayerInput.onRotateAction -= RotateCharacter;
+
 	}
 
 }

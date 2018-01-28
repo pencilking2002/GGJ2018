@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	public float x, y, x2, y2;
     List<InputInfo> inputs = new List<InputInfo>();
     public static Action<int> onSwordAttack;
+    public static Action<int> onDashMove;
     public static Action<int,int> onRotateAction;
     public GameObject player;
 
@@ -42,6 +43,14 @@ public class PlayerInput : MonoBehaviour {
                     if (onSwordAttack != null)
                     {
                         onSwordAttack(i);
+                    }
+                }
+
+                else if(inputs[i].device.Action4.WasPressed)
+                {
+                    if(onDashMove != null)
+                    {
+                        onDashMove(i);
                     }
                 }
             } 
