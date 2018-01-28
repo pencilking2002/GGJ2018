@@ -4,6 +4,7 @@ using System.Collections;
 // based on http://unitytipsandtricks.blogspot.com/2013/05/camera-shake.html
 public class PerlinShake : MonoBehaviour 
 {	
+	
 	public static PerlinShake Instance;
 	public float duration = 2f;
 	public float speed = 20f;
@@ -24,7 +25,13 @@ public class PerlinShake : MonoBehaviour
 
 		InitInstance();
 	}	
-	
+
+	public void AssignOrigPos()
+	{
+		originalPos = transform.localPosition;
+		originalRot = transform.localRotation;
+	}
+
 	public void Shake()
 	{
 		testPosition = true;
@@ -124,5 +131,7 @@ public class PerlinShake : MonoBehaviour
 		else 
 			Destroy(gameObject);
 	}
+
+
 
 }

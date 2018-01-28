@@ -13,11 +13,15 @@ public enum GameMode {
 
 public class GameManager : MonoBehaviour {
 
+	public static Action onStartMatch;
+	public static Action onGameOver;
+	public static Action onStartMenu;
+
     public static Action onSetPlayers;
     public GameObject[] players;
     public int numberOfPlayers = 0;
     public GameObject player;
-    public bool gameCanEnd;
+   // public bool gameCanEnd;
     public GameMode mode = GameMode.Menu;
 
     public void Awake()
@@ -27,8 +31,8 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
-        gameCanEnd = false;
-        SceneManager.LoadScene("Main-Mike");
+        //gameCanEnd = false;
+       // SceneManager.LoadScene("Main-Mike");
     }
 
     public void SetPlayers()
@@ -50,14 +54,60 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        gameCanEnd = true;
+        //gameCanEnd = true;
     }
 
     public void Update()
     {
-        if(numberOfPlayers < 0 && gameCanEnd)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+//        if(numberOfPlayers < 0 && gameCanEnd)
+//        {
+//            SceneManager.LoadScene("MainMenu");
+//        }
+    }
+
+    public void StartMenu()
+    {
+    	mode = GameMode.Menu;
+
+    	if (onStartMenu != null)
+    		onStartMenu();
+    }
+
+
+    public void StartMatch()
+    {
+    	mode = GameMode.Match;
+		if (onStartMatch != null)
+		{
+    		onStartMatch();
+    		print ("there are listeners");
+    	}
+    	else
+    	{
+			print ("no listeners");
+
+    	}
+
+    }
+
+    public void GameOver()
+    {
+    	mode = GameMode.GameOver;
+		if (onGameOver != null)
+    		onGameOver();
+    }
+
+    public bool IsMatch()
+    {
+    	return mode == GameMode.Match;
+    }
+	public bool IsGameOver()
+    {
+		return mode == GameMode.GameOver;
+
+    }
+	public bool IsMenu()
+    {
+		return mode == GameMode.Menu;
     }
 }
