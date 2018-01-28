@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 10;
-    public float dashSpeed = 10;
+    private float dashSpeed = 10.0f;
 	public int playerIndex;
+    public bool lockDash;
+    public float dashCoolTimerStart;
+    public float dashCoolTimerEnd = 2.0f;
     public GameObject stretchObj;
 	public PickupType currentPickup;
 	[HideInInspector]
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		cam = Camera.main;
 		rb = GetComponent<Rigidbody>();
+        dashCoolTimerStart = Time.time;
 	}
 
 	void Update()
@@ -41,7 +45,14 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate()
 	{
         Vector3 vel =  Manager.Instance.PlayerInput.GetPlayerInput(playerIndex) * speed;
-        rb.AddForce(vel);   
+        rb.AddForce(vel);
+
+        if (Time.time > dashCoolTimerStart + dashCoolTimerEnd)
+        {
+            lockDash = false;
+        }else{
+            lockDash = true;
+        }
     }
 
 	void SwordAttack(int index)
@@ -63,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 
                 var scale = stretchObj.transform.localScale;
 
-                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * 10, scale.z), 0.1f).setOnComplete(() =>
+                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * 1.2f, scale.z), 0.1f).setOnComplete(() =>
                 {
                     LeanTween.scale(stretchObj, scale, 0.1f);
                 });
@@ -84,9 +95,11 @@ public class PlayerController : MonoBehaviour {
 
     void DashMove(int index)
     {
-        if(index == playerIndex)
+        if(index == playerIndex && !lockDash)
         {
-            rb.AddForce(new Vector3(rb.velocity.x * dashSpeed, 5.0f, rb.velocity.z * dashSpeed), ForceMode.Impulse);
+            dashCoolTimerStart = Time.time;
+            rb.AddForce(new Vector3(rb.velocity.x * dashSpeed, 7.0f, rb.velocity.z * dashSpeed), ForceMode.Impulse);
+            lockDash = true;
 
         }
     }
