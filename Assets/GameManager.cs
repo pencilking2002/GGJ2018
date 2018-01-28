@@ -97,40 +97,38 @@ public class GameManager : MonoBehaviour {
 		Manager.Instance.audioManager.PlayMusic(AudioType.LevelMusic);
 
     	mode = GameMode.Match;
+
 		if (onStartMatch != null)
+			onStartMatch();
+
+		var gameCanvas = GameObject.FindGameObjectWithTag("GameUI");
+		if (gameCanvas.GetComponent<CanvasGroup>().alpha == 0)
+			gameCanvas.GetComponent<CanvasGroup>().alpha = 1;
+
+
+		if (players == null)
+			SetPlayers();
+
+
+		
+		//print ("there are listeners");
+
+		print (numberOfPlayers);
+
+		for (int i=0; i < players.Length; i++)
 		{
-			var gameCanvas = GameObject.FindGameObjectWithTag("GameUI");
-			if (gameCanvas.GetComponent<CanvasGroup>().alpha == 0)
-				gameCanvas.GetComponent<CanvasGroup>().alpha = 1;
+    		// get all the players
 
+			// find the corresponding Manager.Instance.PlayerInput.inputs and get the color
+			var playerRend = players[i].transform.Find("Mesh").GetComponent<Renderer>();
+			var otherRend = Manager.Instance.PlayerInput.inputs[i].currAvatar.GetComponent<Renderer>();
 
-			if (players == null)
-				SetPlayers();
+			playerRend.material.color = otherRend.material.color;
 
-    		onStartMatch();
-    		//print ("there are listeners");
+			//Manager.Instance.PlayerInput.inputs[i].currAvatar.GetComponent<Renderer>().sharedMaterial.color;
+			// assign to the player
+		}
 
-    		print (numberOfPlayers);
-
-    		for (int i=0; i < players.Length; i++)
-    		{
-	    		// get all the players
-
-				// find the corresponding Manager.Instance.PlayerInput.inputs and get the color
-				var playerRend = players[i].transform.Find("Mesh").GetComponent<Renderer>();
-				var otherRend = Manager.Instance.PlayerInput.inputs[i].currAvatar.GetComponent<Renderer>();
-
-				playerRend.material.color = otherRend.material.color;
-
-				//Manager.Instance.PlayerInput.inputs[i].currAvatar.GetComponent<Renderer>().sharedMaterial.color;
-				// assign to the player
-			}
-    	}
-    	else
-    	{
-			print ("no listeners");
-
-    	}
 
     }
 

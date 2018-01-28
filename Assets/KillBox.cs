@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillBox : MonoBehaviour {
 
@@ -43,14 +44,15 @@ public class KillBox : MonoBehaviour {
 						LeanTween.move(logo, logo.transform.position + new Vector3(logo.transform.position.x+10, -165.8f,logo.transform.position.z), 1.0f)
 						.setOnComplete(() => {
 							LeanTween.delayedCall(3.0f, () => {
-								Manager.Instance.Game.StartMenu(true);
-
-								GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-								foreach(var p in players)
-									Destroy(p);
-
-								Manager.Instance.Game.players = null;
+//								Manager.Instance.Game.StartMenu(true);
+//
+//								GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+//
+//								foreach(var p in players)
+//									Destroy(p);
+//
+//								Manager.Instance.Game.players = null;
+								SceneManager.LoadScene("Main");
 							});
 					});
 				}

@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour {
     {
         if (InitInstance())
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             Game = GetComponentInChildren<GameManager>();
             PlayerInput = GetComponentInChildren<PlayerInput>();
             audioManager = GetComponentInChildren<AudioManager>();

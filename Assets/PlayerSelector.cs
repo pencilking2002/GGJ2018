@@ -49,6 +49,7 @@ public class PlayerSelector : MonoBehaviour {
 		if (allCharsSelected)
 		{
 			Manager.Instance.Game.StartMatch();
+			allCharsSelected = false;
 		}
 	}
 
