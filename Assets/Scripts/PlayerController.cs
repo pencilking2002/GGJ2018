@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	[Header("Movement Settings")] [Space(5)]
+
     public float speed = 10;
-    public float rotSpeed = 20;
-	public int playerIndex;
-	public PickupType currentPickup;
-	[HideInInspector]
-	public Rigidbody rb;
+   
+	[Header("Dash Settings")] [Space(5)]
 
-	[Header("Sword Settings")]
-	[Space(5)]
+    public bool lockDash;
+    public float dashCoolTimerStart;
+    public float dashCoolTimerEnd = 2.0f;
+	public float dashSpeed = 10.0f;
+	public GameObject dashTrail;
+
+	[Header("Sword Settings")] [Space(5)]
+
 	public float attackLength = 1;
-	public GameObject daggerPickupMode;
 	public float swordAttackForce = 30;
-
+	public float swordAttackStretchAmount = 1.2f;
+	public GameObject daggerPickupMode;
+	public GameObject stretchObj;
 	public SphereCollider attackSphere;
 
-	//public GameObject jumpPickupMode;
+	public PickupType currentPickup;
+	[HideInInspector] public Rigidbody rb;
+	[HideInInspector] public int playerIndex;
 
 	Camera cam;
 	int swordAttackTweenID = -9999;
-
 	bool swordAttacking;
 
 	void Awake()
 	{
 		cam = Camera.main;
 		rb = GetComponent<Rigidbody>();
+        dashCoolTimerStart = Time.time;
+
+        dashTrail.SetActive(false);
+       	daggerPickupMode.SetActive(false);
 	}
 
 	void Update()
@@ -40,13 +51,19 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate()
 	{
         Vector3 vel =  Manager.Instance.PlayerInput.GetPlayerInput(playerIndex) * speed;
-        rb.AddForce(vel);   
+        rb.AddForce(vel);
+
+        if (Time.time > dashCoolTimerStart + dashCoolTimerEnd)
+        {
+            lockDash = false;
+            dashTrail.SetActive(false);
+        }else{
+            lockDash = true;
+        }
     }
 
 	void SwordAttack(int index)
 	{
-//		print("index: " + index);
-//		print("player index: " + playerIndex);
 
 
 		if (index == playerIndex)
@@ -59,6 +76,13 @@ public class PlayerController : MonoBehaviour {
 				.setOnComplete(() => {
 					swordAttackTweenID = LeanTween.moveLocal(daggerPickupMode, Vector3.zero, 0.1f).id;
 				}).id;
+
+                var scale = stretchObj.transform.localScale;
+
+                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * swordAttackStretchAmount, scale.z), 0.1f).setOnComplete(() =>
+                {
+                    LeanTween.scale(stretchObj, scale, 0.1f);
+                });
 
 				swordAttacking = true;
 
@@ -73,6 +97,31 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+    void DashMove(int index)
+    {
+        if(index == playerIndex && !lockDash)
+        {
+        	Manager.Instance.audioManager.Play(AudioType.Dash);
+        	dashTrail.SetActive(true);
+            dashCoolTimerStart = Time.time;
+            //rb.AddForce(new Vector3(rb.velocity.x * dashSpeed, 7.0f, rb.velocity.z * dashSpeed), ForceMode.Impulse);
+            rb.velocity = Vector3.zero;
+            //rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+
+            // Make player dash the way he is facing or if he's moving, make him dash in the directon of the movement
+            var currInput = Manager.Instance.PlayerInput.GetPlayerInput(playerIndex);
+
+            if (currInput == Vector3.zero)
+				rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+			else
+				rb.AddForce(currInput.normalized * dashSpeed, ForceMode.Impulse);
+
+            print(currInput);
+            lockDash = true;
+
+        }
+    }
 
     void RotateCharacter(int index, int direction)
     {
@@ -110,13 +159,16 @@ public class PlayerController : MonoBehaviour {
 	void OnEnable()
 	{
 		PlayerInput.onSwordAttack += SwordAttack;
+        PlayerInput.onDashMove += DashMove;
         PlayerInput.onRotateAction += RotateCharacter;
 	}
 
 	void OnDisable()
 	{
 		PlayerInput.onSwordAttack -= SwordAttack;
+        PlayerInput.onDashMove -= DashMove;
         PlayerInput.onRotateAction -= RotateCharacter;
+
 	}
 
 }

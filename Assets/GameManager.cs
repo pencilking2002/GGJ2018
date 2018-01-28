@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 using System;
 using InControl;
 
+public enum GameMode {
+	Menu,
+	Match,
+	GameOver
+}
+
 public class GameManager : MonoBehaviour {
 
     public static Action onSetPlayers;
@@ -12,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public int numberOfPlayers = 0;
     public GameObject player;
     public bool gameCanEnd;
+    public GameMode mode = GameMode.Menu;
 
     public void Awake()
     {

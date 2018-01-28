@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	public float x, y, x2, y2;
     List<InputInfo> inputs = new List<InputInfo>();
     public static Action<int> onSwordAttack;
+    public static Action<int> onDashMove;
     public static Action<int,int> onRotateAction;
     public GameObject player;
 
@@ -37,11 +38,19 @@ public class PlayerInput : MonoBehaviour {
                     }
                 }
 
-                if (inputs[i].device.Action2.WasPressed)
+                if (inputs[i].device.Action3.WasPressed)
                 {
                     if (onSwordAttack != null)
                     {
                         onSwordAttack(i);
+                    }
+                }
+
+                else if(inputs[i].device.Action1.WasPressed)
+                {
+                    if(onDashMove != null)
+                    {
+                        onDashMove(i);
                     }
                 }
             } 
@@ -55,12 +64,19 @@ public class PlayerInput : MonoBehaviour {
 			y = Input.GetAxis("Vertical");
 
 			if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (onSwordAttack != null)
                 {
-                    if (onSwordAttack != null)
-                    {
-                        onSwordAttack(0);
-                    }
+                    onSwordAttack(0);
                 }
+            }
+			else if(Input.GetKeyDown(KeyCode.C))
+            {
+		        if(onDashMove != null)
+		        {
+		            onDashMove(0);
+		        }
+            }
         }
 	}
 

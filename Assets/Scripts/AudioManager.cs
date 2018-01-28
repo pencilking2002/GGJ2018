@@ -13,13 +13,12 @@ public enum AudioType {
 	EndingTheme,
 	PunchHit,
 	Dash,
-	WindTunnel,
-	SwordPickup
+	WindTunnel
 
 }
 
 public class AudioManager : MonoBehaviour {
-
+	
 	//public AudioSource audioSource;
 
 	// Clips
@@ -32,8 +31,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip endingThemeClip;
 	public AudioClip punchHitClip;
 	public AudioClip dashClip;
-	public AudioClip windtunnelClip;
-	public AudioClip swordPickupClip;
+	public AudioClip windtunnel;
 
 	public Dictionary<AudioType, AudioClip> audioDict = new Dictionary<AudioType, AudioClip>();
 
@@ -50,8 +48,9 @@ public class AudioManager : MonoBehaviour {
 		audioDict.Add (AudioType.EndingTheme, endingThemeClip);
 		audioDict.Add (AudioType.PunchHit, punchHitClip);
 		audioDict.Add (AudioType.Dash, dashClip);
-		audioDict.Add (AudioType.WindTunnel, windtunnelClip);
-		audioDict.Add (AudioType.SwordPickup,swordPickupClip);
+		audioDict.Add (AudioType.WindTunnel, windtunnel);
+
+		PlayMusic(AudioType.LevelMusic);
 	}
 
 //	void Update ()
@@ -72,6 +71,16 @@ public class AudioManager : MonoBehaviour {
 		audioSource.PlayOneShot(audioDict[audioType]);
 
 		Destroy(go, 3.0f);
+	}
 
+	public void PlayMusic(AudioType audioType)
+	{
+		GameObject go = new GameObject();
+		go.AddComponent<AudioSource>();
+		AudioSource audioSource = go.GetComponent<AudioSource>();
+		audioSource.clip = audioDict[audioType];
+		audioSource.playOnAwake = false;
+		audioSource.loop = true;
+		audioSource.PlayOneShot(audioDict[audioType]);
 	}
 }

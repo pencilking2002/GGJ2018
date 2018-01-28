@@ -202,7 +202,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   daggerSwishClip: {fileID: 8300000, guid: 6f1ce8096f9fd48e4aa5e94821cd10e2, type: 3}
-  shieldHitClip: {fileID: 0}
+  shieldHitClip: {fileID: 8300000, guid: 26cbfb3bb031a45ab88ca10be180eeaa, type: 3}
+  fallClip: {fileID: 8300000, guid: 93bc8248d6e2f4af0a289abc0d74e87f, type: 3}
+  endingmatchClip: {fileID: 8300000, guid: 91ab9118af0e64d8090548d77ad5065d, type: 3}
+  mainMenuClip: {fileID: 8300000, guid: ce7847191d65f4e7a9d1775506469fb9, type: 3}
+  levelMusicClip: {fileID: 8300000, guid: 07e5df128590447a0983252c08ef68ab, type: 3}
+  endingThemeClip: {fileID: 8300000, guid: 8072ccfa3862747758e7e1c2a9797b5a, type: 3}
+  punchHitClip: {fileID: 8300000, guid: 343006cbc34a84dcebf02c9adfd1edca, type: 3}
+  dashClip: {fileID: 8300000, guid: fadb5dc09d97a4cc089de2b86f65dffd, type: 3}
+  windtunnel: {fileID: 8300000, guid: 0588e37aa640f4341a3ee3d2b5f067af, type: 3}
 --- !u!114 &114725339420348412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,7 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  numberOfPlayers: 0
   player: {fileID: 1885900553650594, guid: a64e8798c8f44445f8cd1b40ae7d1f3c, type: 2}
+  gameCanEnd: 0
 --- !u!114 &114737677736257442
 MonoBehaviour:
   m_ObjectHideFlags: 1

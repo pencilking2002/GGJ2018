@@ -18,7 +18,9 @@ public class HitWithDagger : MonoBehaviour {
 			print (player.playerIndex);
 			print(enemy.playerIndex);
 
-			enemy.rb.AddForce(player.transform.forward * player.swordAttackForce, ForceMode.Impulse);	
+			enemy.rb.AddForce(player.transform.forward * player.swordAttackForce, ForceMode.Impulse);
+			PerlinShake.Instance.Shake();
+			Manager.Instance.audioManager.Play(AudioType.PunchHit);	
 
 		}
 	}
