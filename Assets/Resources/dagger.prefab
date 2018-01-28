@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33960232989263928}
   - component: {fileID: 23357004092642558}
   m_Layer: 0
-  m_Name: dagger_01
+  m_Name: dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
