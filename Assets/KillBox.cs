@@ -44,8 +44,11 @@ public class KillBox : MonoBehaviour {
 						.setOnComplete(() => {
 							LeanTween.delayedCall(3.0f, () => {
 								Manager.Instance.Game.StartMenu(true);
-								GameObject player = GameObject.FindGameObjectWithTag("Player");
-								Destroy(player);
+
+								GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+								foreach(var p in players)
+									Destroy(p);
 
 								Manager.Instance.Game.players = null;
 							});
