@@ -439,8 +439,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  dashSpeed: 20
   playerIndex: 0
+  lockDash: 0
+  dashCoolTimerStart: 0
+  dashCoolTimerEnd: 2
   stretchObj: {fileID: 1954817019239228}
   currentPickup: 2
   rb: {fileID: 0}
