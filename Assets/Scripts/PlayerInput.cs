@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour {
 			for (int i = 0; i < InputManager.Devices.Count; i++)
 	        {
 				inputs[i].device = InputManager.Devices[i];
-				if (inputs[i].device.Action1)
+				if (inputs[i].device.AnyButton.WasPressed || Input.anyKeyDown)
 				{
 					Manager.Instance.Game.StartMatch();
 					//return;
