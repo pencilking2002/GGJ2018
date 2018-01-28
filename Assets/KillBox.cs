@@ -15,10 +15,13 @@ public class KillBox : MonoBehaviour {
 		
 	}
 
+	private List<GameObject> deadList = new List<GameObject>();
+
     private void OnTriggerEnter(Collider other)
     {
-    	if (other.CompareTag("Player"))
+    	if (other.CompareTag("Player") && !deadList.Contains(other.gameObject))
     	{
+    		deadList.Add(other.gameObject);
 
 	    	PerlinShake.Instance.Shake();
 			Manager.Instance.audioManager.Play(AudioType.Falling);
@@ -32,18 +35,23 @@ public class KillBox : MonoBehaviour {
 			.setOnComplete(() => {
 				
 	        	Destroy(go, 1.0f);
+	        	//go.SetActive(false);
+
 	        	print(Manager.Instance.Game.players.Length);
 	        	Manager.Instance.Game.numberOfPlayers--;
 
-					if (Manager.Instance.Game.numberOfPlayers <= 1)
+				print ("ROMAN: " + Manager.Instance.Game.numberOfPlayers.ToString());
+
+					//if (Manager.Instance.Game.numberOfPlayers <= 1)
+				if(Manager.Instance.Game.numberOfPlayers <= 1)
 				{
 					var logo = GameObject.FindGameObjectWithTag("Logo");
 
 					Manager.Instance.Game.GameOver();
 
-						LeanTween.move(logo, logo.transform.position + new Vector3(logo.transform.position.x+10, -165.8f,logo.transform.position.z), 1.0f)
-						.setOnComplete(() => {
-							LeanTween.delayedCall(3.0f, () => {
+					LeanTween.move(logo, logo.transform.position + new Vector3(logo.transform.position.x+10, -165.8f,logo.transform.position.z), 1.0f)
+					.setOnComplete(() => {
+						LeanTween.delayedCall(3.0f, () => {
 //								Manager.Instance.Game.StartMenu(true);
 //
 //								GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -52,8 +60,8 @@ public class KillBox : MonoBehaviour {
 //									Destroy(p);
 //
 //								Manager.Instance.Game.players = null;
-								SceneManager.LoadScene("Main");
-							});
+							SceneManager.LoadScene("Main");
+						});
 					});
 				}
 					

@@ -13,14 +13,22 @@ public class PlayerInput : MonoBehaviour {
     public static Action<int,int> onRotateAction;
     public GameObject player;
 
+    void Awake()
+    {
+		if (GameManager.onSetPlayers == null)
+			GameManager.onSetPlayers += AssignPlayers;
+    }
 
     void Update()
 	{
-		if (Manager.Instance.Game.IsMenu())
+		if (Manager.Instance.Game.IsMenu() && InputManager.Devices != null)
 		{
 
 			for (int i = 0; i < InputManager.Devices.Count; i++)
 	        {
+				if (inputs[i] == null || InputManager.Devices[i] == null)
+	        		return;
+
 				inputs[i].device = InputManager.Devices[i];
 				if (inputs[i].device.AnyButton.WasPressed || Input.anyKeyDown)
 				{
@@ -61,7 +69,7 @@ public class PlayerInput : MonoBehaviour {
 
 		else if (Manager.Instance.Game.IsMatch())
 		{
-	        if (InputManager.Devices.Count != 0)
+			if (InputManager.Devices != null && InputManager.Devices.Count != 0)
 	        {
 	        	//print ("p");
 	            //print("Devices " + InputManager.Devices.Count);
@@ -143,6 +151,12 @@ public class PlayerInput : MonoBehaviour {
     {
         GameManager.onSetPlayers -= AssignPlayers;   
     }
+
+	private void OnDestroy()
+    {
+        GameManager.onSetPlayers -= AssignPlayers;   
+    }
+
 
     void AssignPlayers()
     {
