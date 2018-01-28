@@ -135,6 +135,9 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+        if (daggerPickupMode.activeInHierarchy)
+            return;
+        
 		var pickup = other.GetComponent<Pickup>();
 
 		if (pickup != null)
