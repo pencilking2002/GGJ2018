@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: BG_Mat
-  m_Shader: {fileID: 4800000, guid: 261f1ede42e61114b88fd91482b7fdda, type: 3}
+  m_Shader: {fileID: 4800000, guid: a1c381fae11c841aea283a9bc6d6c9e1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -68,7 +68,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _Angle: 1
+    - _Angle: -0.06
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -93,13 +93,16 @@ Material:
     - _UVXOffset: -4.22
     - _UVXScale: 1.46
     - _UVYOffset: -0.46
-    - _UVYScale: 1.11
+    - _UVYScale: 1.27
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 0.7103448, b: 1, a: 1}
-    - _Color2: {r: 1, g: 0.9068966, b: 0.60294116, a: 1}
-    - _Color3: {r: 0.86764705, g: 0, b: 0, a: 1}
-    - _Color4: {r: 0, g: 0.9044118, b: 0.60502034, a: 1}
+    - _Color: {r: 0.090073526, g: 0.2820233, b: 0.909, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.11764705, g: 0.114186846, b: 0.114186846, a: 1}
+    - _Color3: {r: 0.125, g: 0.125, b: 0.125, a: 1}
+    - _Color4: {r: 0.13840829, g: 0.2352941, b: 0.20322156, a: 1}
+    - _Color5: {r: 1, g: 1, b: 1, a: 1}
+    - _Color6: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
