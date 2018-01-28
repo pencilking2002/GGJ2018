@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    void PlayerInput_OnRotateAction(int obj)
-    {
-
-    }
 
     public float speed = 10;
     public float rotSpeed = 20;
