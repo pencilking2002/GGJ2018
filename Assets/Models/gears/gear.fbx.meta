@@ -1,37 +1,33 @@
 fileFormatVersion: 2
-guid: c88a50613e8224145af0a444ff9d8c75
-timeCreated: 1517092176
+guid: bc31cd6ebfd0b1044b7f23b140ced86e
+timeCreated: 1517157835
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Camera
-    100004: Cube
-    100006: Point
-    100008: Point.001
-    100010: Point.002
-    400000: //RootNode
-    400002: Camera
-    400004: Cube
-    400006: Point
-    400008: Point.001
-    400010: Point.002
-    2000000: Camera
-    2300000: //RootNode
-    2300002: Cube
-    3300000: //RootNode
-    3300002: Cube
-    4300000: Cube
-    10800000: Point
-    10800002: Point.001
-    10800004: Point.002
+    100000: circle.000_MeshPart0
+    100002: circle.000_MeshPart1
+    100004: circle.000_MeshPart2
+    100006: //RootNode
+    400000: circle.000_MeshPart0
+    400002: circle.000_MeshPart1
+    400004: circle.000_MeshPart2
+    400006: //RootNode
+    2300000: circle.000_MeshPart0
+    2300002: circle.000_MeshPart1
+    2300004: circle.000_MeshPart2
+    3300000: circle.000_MeshPart0
+    3300002: circle.000_MeshPart1
+    3300004: circle.000_MeshPart2
+    4300000: circle.000_MeshPart0
+    4300002: circle.000_MeshPart1
+    4300004: circle.000_MeshPart2
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 36138473d28fcfb43a184c21a42f236e, type: 2}
+      name: No Name
+    second: {fileID: 2100000, guid: 014d4d566ad67d54098d59a6c277b643, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
