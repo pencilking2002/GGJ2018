@@ -31,10 +31,11 @@ public class PlayerSelector : MonoBehaviour {
 				//List<InputInfo> inputInfo = new List<InputInfo>(Manager.Instance.PlayerInput.inputs);
 				Manager.Instance.PlayerInput.inputs[i].currAvatar = SelectionAvatars[i];
 
+
 			}
 		}
 
-		print (numPlayers);
+		//print (numPlayers);
 
 	}
 

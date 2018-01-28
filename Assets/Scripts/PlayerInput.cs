@@ -63,7 +63,7 @@ public class PlayerInput : MonoBehaviour {
 		{
 	        if (InputManager.Devices.Count != 0)
 	        {
-	        	print ("p");
+	        	//print ("p");
 	            //print("Devices " + InputManager.Devices.Count);
 	            for (int i = 0; i < InputManager.Devices.Count; i++)
 	            {

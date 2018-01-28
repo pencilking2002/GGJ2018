@@ -8,7 +8,7 @@ public class CamController : MonoBehaviour {
 
 	void Start()
 	{
-		print ("start");
+		//print ("start");
 	}
 
 	void MoveCamToMatchPos()
