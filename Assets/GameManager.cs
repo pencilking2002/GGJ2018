@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
         
         foreach(InputDevice device in InputManager.Devices)
         {
-            Instantiate(player, new Vector3(0f, 10.0f, 0f), Quaternion.identity);
+            Instantiate(player, new Vector3(5f, 10.0f, -5f), Quaternion.identity);
             numberOfPlayers++;
         }
 
