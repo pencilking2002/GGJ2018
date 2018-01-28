@@ -16,7 +16,22 @@ public class KillBox : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject go = other.gameObject;
-        Destroy(go, 1.0f);
+    	if (other.CompareTag("Player"))
+    	{
+
+	    	PerlinShake.Instance.Shake();
+			Manager.Instance.audioManager.Play(AudioType.Falling);
+	        GameObject go = other.gameObject;
+	        Renderer rend = go.transform.Find("Mesh").GetComponent<Renderer>();
+	        Color col = rend.material.color;
+
+			LeanTween.value(1.0f, 0.0f, 0.3f).setOnUpdate((float val) => {
+				rend.material.color = new Color(col.r, col.b, col.g, val);
+			})
+			.setOnComplete(() => {
+	        	Destroy(go, 1.0f);
+	        });
+        }
+
     }
 }
