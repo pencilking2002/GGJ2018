@@ -9,25 +9,55 @@ ModelImporter:
     100002: circle.000_MeshPart1
     100004: circle.000_MeshPart2
     100006: //RootNode
+    100008: circle.000
+    100010: circle.006
+    100012: circle.007
+    100014: circle.008
+    100016: circle.009
+    100018: circle.010
     400000: circle.000_MeshPart0
     400002: circle.000_MeshPart1
     400004: circle.000_MeshPart2
     400006: //RootNode
+    400008: circle.000
+    400010: circle.006
+    400012: circle.007
+    400014: circle.008
+    400016: circle.009
+    400018: circle.010
     2300000: circle.000_MeshPart0
     2300002: circle.000_MeshPart1
     2300004: circle.000_MeshPart2
+    2300006: circle.000
+    2300008: circle.006
+    2300010: circle.007
+    2300012: circle.008
+    2300014: circle.009
+    2300016: circle.010
     3300000: circle.000_MeshPart0
     3300002: circle.000_MeshPart1
     3300004: circle.000_MeshPart2
+    3300006: circle.000
+    3300008: circle.006
+    3300010: circle.007
+    3300012: circle.008
+    3300014: circle.009
+    3300016: circle.010
     4300000: circle.000_MeshPart0
     4300002: circle.000_MeshPart1
     4300004: circle.000_MeshPart2
+    4300006: circle.010
+    4300008: circle.009
+    4300010: circle.008
+    4300012: circle.007
+    4300014: circle.006
+    4300016: circle.000
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 014d4d566ad67d54098d59a6c277b643, type: 2}
+    second: {fileID: 2100000, guid: 8500b46f9b6024c108d5e6cc8459e104, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
