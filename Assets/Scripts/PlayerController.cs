@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(index == playerIndex && !lockDash)
         {
+        	Manager.Instance.audioManager.Play(AudioType.Dash);
         	dashTrail.SetActive(true);
             dashCoolTimerStart = Time.time;
             //rb.AddForce(new Vector3(rb.velocity.x * dashSpeed, 7.0f, rb.velocity.z * dashSpeed), ForceMode.Impulse);
