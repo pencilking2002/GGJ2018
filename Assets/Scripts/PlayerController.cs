@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public float attackLength = 1;
 	public GameObject daggerPickupMode;
 	public float swordAttackForce = 30;
-
+	public float swordAttackStretchAmount = 1.5f;
 	public SphereCollider attackSphere;
 
 	//public GameObject jumpPickupMode;
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 
                 var scale = stretchObj.transform.localScale;
 
-                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * 10, scale.z), 0.1f).setOnComplete(() =>
+                LeanTween.scale(stretchObj, new Vector3(scale.x, scale.y * swordAttackStretchAmount, scale.z), 0.1f).setOnComplete(() =>
                 {
                     LeanTween.scale(stretchObj, scale, 0.1f);
                 });

@@ -64,12 +64,19 @@ public class PlayerInput : MonoBehaviour {
 			y = Input.GetAxis("Vertical");
 
 			if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (onSwordAttack != null)
                 {
-                    if (onSwordAttack != null)
-                    {
-                        onSwordAttack(0);
-                    }
+                    onSwordAttack(0);
                 }
+            }
+			else if(Input.GetKeyDown(KeyCode.C))
+            {
+		        if(onDashMove != null)
+		        {
+		            onDashMove(0);
+		        }
+            }
         }
 	}
 
