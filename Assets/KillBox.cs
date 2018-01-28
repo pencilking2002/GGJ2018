@@ -29,9 +29,29 @@ public class KillBox : MonoBehaviour {
 				rend.material.color = new Color(col.r, col.b, col.g, val);
 			})
 			.setOnComplete(() => {
-
+				
 	        	Destroy(go, 1.0f);
 	        	print(Manager.Instance.Game.players.Length);
+	        	Manager.Instance.Game.numberOfPlayers--;
+
+					if (Manager.Instance.Game.numberOfPlayers <= 1)
+				{
+					var logo = GameObject.FindGameObjectWithTag("Logo");
+
+					Manager.Instance.Game.GameOver();
+
+						LeanTween.move(logo, logo.transform.position + new Vector3(logo.transform.position.x+10, -165.8f,logo.transform.position.z), 1.0f)
+						.setOnComplete(() => {
+							LeanTween.delayedCall(3.0f, () => {
+								Manager.Instance.Game.StartMenu(true);
+								GameObject player = GameObject.FindGameObjectWithTag("Player");
+								Destroy(player);
+
+								Manager.Instance.Game.players = null;
+							});
+					});
+				}
+					
 	        });
         }
 

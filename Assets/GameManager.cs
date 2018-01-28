@@ -73,10 +73,16 @@ public class GameManager : MonoBehaviour {
 //        }
     }
 
-    public void StartMenu()
+    public void StartMenu(bool reset=false)
     {
     	mode = GameMode.Menu;
 		Manager.Instance.audioManager.PlayMusic(AudioType.MainMenu);
+
+		if (reset)
+		{
+			GameObject.FindGameObjectWithTag("Logo").GetComponent<WobbleText>().ResetPos();
+			Camera.main.GetComponent<CamController>().ResetPos();
+		}
 
     	if (onStartMenu != null)
     		onStartMenu();
@@ -93,6 +99,14 @@ public class GameManager : MonoBehaviour {
     	mode = GameMode.Match;
 		if (onStartMatch != null)
 		{
+			var gameCanvas = GameObject.FindGameObjectWithTag("GameUI");
+			if (gameCanvas.GetComponent<CanvasGroup>().alpha == 0)
+				gameCanvas.GetComponent<CanvasGroup>().alpha = 1;
+
+
+			if (players == null)
+				SetPlayers();
+
     		onStartMatch();
     		//print ("there are listeners");
 

@@ -82,7 +82,21 @@ public class AudioManager : MonoBehaviour {
 	string matchAudioSourceTag = "MatchAudioSource";
 
 	public void PlayMusic(AudioType audioType)
-	{
+	{	
+
+		GameObject match = GameObject.FindGameObjectWithTag(matchAudioSourceTag);
+		GameObject menu = GameObject.FindGameObjectWithTag(mainMenuAudioSourceTag);
+
+		if (match != null)
+		{
+			Destroy(match);
+		}
+
+		if (menu != null)
+		{
+			Destroy(menu);
+		}
+
 		GameObject go = new GameObject();
 		go.AddComponent<AudioSource>();
 		AudioSource audioSource = go.GetComponent<AudioSource>();
@@ -94,26 +108,33 @@ public class AudioManager : MonoBehaviour {
 		if (audioType == AudioType.MainMenu)
 		{
 			mainMenuAudioSource = audioSource;
-			audioSource.tag = mainMenuAudioSourceTag;
-
-			GameObject match = GameObject.FindGameObjectWithTag(matchAudioSourceTag);
-			if (match != null)
-			{
-				Destroy(match);
-			}
-
+			audioSource.tag = mainMenuAudioSourceTag;	
 		}
-		else if (audioType == AudioType.LevelMusic)
+
+		if (audioType == AudioType.LevelMusic)
 		{
-			matchAudioSource = matchAudioSource;
+			matchAudioSource = audioSource;
 			audioSource.tag = matchAudioSourceTag;
-
-			GameObject menu = GameObject.FindGameObjectWithTag(mainMenuAudioSourceTag);
-			if (menu != null)
-			{
-				Destroy(menu);
-			}
 		}
+
+
+//		if (audioType == AudioType.MainMenu)
+//		{
+			
+
+
+//		}
+//		else if (audioType == AudioType.LevelMusic)
+//		{
+//			matchAudioSource = matchAudioSource;
+//			audioSource.tag = matchAudioSourceTag;
+//
+//			GameObject menu = GameObject.FindGameObjectWithTag(mainMenuAudioSourceTag);
+//			if (menu != null)
+//			{
+//				Destroy(menu);
+//			}
+		//}
 	}
 
 //	public void Stop()
