@@ -13,7 +13,8 @@ public enum AudioType {
 	EndingTheme,
 	PunchHit,
 	Dash,
-	WindTunnel
+	WindTunnel,
+	SwordPickup
 
 }
 
@@ -31,7 +32,8 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip endingThemeClip;
 	public AudioClip punchHitClip;
 	public AudioClip dashClip;
-	public AudioClip windtunnel;
+	public AudioClip windtunnelClip;
+	public AudioClip swordPickupClip;
 
 	public Dictionary<AudioType, AudioClip> audioDict = new Dictionary<AudioType, AudioClip>();
 
@@ -48,7 +50,8 @@ public class AudioManager : MonoBehaviour {
 		audioDict.Add (AudioType.EndingTheme, endingThemeClip);
 		audioDict.Add (AudioType.PunchHit, punchHitClip);
 		audioDict.Add (AudioType.Dash, dashClip);
-		audioDict.Add (AudioType.WindTunnel, windtunnel);
+		audioDict.Add (AudioType.WindTunnel, windtunnelClip);
+		audioDict.Add (AudioType.SwordPickup,swordPickupClip);
 	}
 
 //	void Update ()
