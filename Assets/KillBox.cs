@@ -29,7 +29,9 @@ public class KillBox : MonoBehaviour {
 				rend.material.color = new Color(col.r, col.b, col.g, val);
 			})
 			.setOnComplete(() => {
+
 	        	Destroy(go, 1.0f);
+	        	print(Manager.Instance.Game.players.Length);
 	        });
         }
 
