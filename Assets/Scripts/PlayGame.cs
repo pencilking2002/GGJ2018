@@ -7,11 +7,11 @@ public class PlayGame : MonoBehaviour
 {
     void Start()
     {
-        Button b = GetComponent<Button>();
-        b.onClick.AddListener(() =>
-        {
-            Manager.Instance.Game.StartGame();
-        });
+//        Button b = GetComponent<Button>();
+//        b.onClick.AddListener(() =>
+//        {
+//            Manager.Instance.Game.StartGame();
+//        });
     }
 
 }

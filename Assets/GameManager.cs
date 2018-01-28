@@ -22,18 +22,26 @@ public class GameManager : MonoBehaviour {
     public int numberOfPlayers = 0;
     public GameObject player;
    // public bool gameCanEnd;
-    public GameMode mode = GameMode.Menu;
+    public GameMode mode;
 
     public void Awake()
     {
         SetPlayers();
+		
     }
 
-    public void StartGame()
+	
+    void Start()
     {
-        //gameCanEnd = false;
-       // SceneManager.LoadScene("Main-Mike");
+		StartMenu();
     }
+
+//    public void StartGame()
+//    {
+//		StartMenu();
+//        //gameCanEnd = false;
+//       // SceneManager.LoadScene("Main-Mike");
+//    }
 
     public void SetPlayers()
     {
@@ -68,6 +76,7 @@ public class GameManager : MonoBehaviour {
     public void StartMenu()
     {
     	mode = GameMode.Menu;
+		Manager.Instance.audioManager.PlayMusic(AudioType.MainMenu);
 
     	if (onStartMenu != null)
     		onStartMenu();
@@ -78,6 +87,8 @@ public class GameManager : MonoBehaviour {
     {
     	if (mode == GameMode.Match)
     		return;
+
+		Manager.Instance.audioManager.PlayMusic(AudioType.LevelMusic);
 
     	mode = GameMode.Match;
 		if (onStartMatch != null)
